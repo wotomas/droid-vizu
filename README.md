@@ -41,6 +41,8 @@ dependencies {
 ```
 
 ## Code Usage
+Simply Provide RippleVisualizerViw with an prepared Android MediaPlayer and set with a corresponding renderer
+
 ```java
     MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.sound_file);  // or any other way to initialize media player are prepare()
     soundPlayerView = (SoundPlayerView) findViewById(R.id.sound_player_view);
@@ -88,7 +90,7 @@ Detailed information about parameters could be found in the source code!
 
 ## Stop and Destory
 ```java
-// It is required to stop VoiceRippleView at onStop and to destory at onDestory to prevent memory leak and unexpected
+// It is required to stop at onStop and to destory at onDestory to prevent memory leak and unexpected events
 @Override
 protected void onStop() {
   super.onStop();
