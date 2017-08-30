@@ -2,14 +2,14 @@
 ![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat) ![Download](https://api.bintray.com/packages/wotomas/maven/ripple-sound-player/images/download.svg)
 
 # About
-[<img src="media/color_block_renderer.gif" width="100" />]() 
-[<img src="media/block_renderer.gif" width="100" />]() 
-[<img src="media/line_renderer.gif" width="100" />]()
+[<img src="media/color_block_renderer.gif" width="200" />]() 
+[<img src="media/block_renderer.gif" width="200" />]() 
+[<img src="media/line_renderer.gif" width="200" />]()
 
 RippleSoundPlayerProject aims to provide cool with visualization effects for any Android audio project. The modular design allows users to easily swap Renderer class to get corresponding effects.
 
 # Demo
-[<img src="media/sample_app_image.gif" width="200" />]()
+[<img src="media/sample_app_image.gif" width="300" />]()
 
 
 # Implement
@@ -66,7 +66,7 @@ dependencies {
 Detailed information about parameters could be found in the source code! 
 
 ### ColorBarRenderer
-[<img src="media/color_block_renderer.gif" width="200" />]() 
+[<img src="media/color_block_renderer.gif" width="800" />]() 
 ```java
   renderDemoView.setCurrentRenderer(new ColorfulBarRenderer(8, PaintUtil.getBarGraphPaint(Color.BLUE)
             , Color.parseColor("#FF0033")
@@ -74,13 +74,13 @@ Detailed information about parameters could be found in the source code!
 ```
 
 ### BarRenderer
-[<img src="media/block_renderer.gif" width="200" />]() 
+[<img src="media/block_renderer.gif" width="800" />]() 
 ```java
   new BarRenderer(16, PaintUtil.getBarGraphPaint(Color.BLUE));
 ```
 
 ### LineRenderer
-[<img src="media/block_renderer.gif" width="200" />]() 
+[<img src="media/block_renderer.gif" width="800" />]() 
 ```java
   new LineRenderer(PaintUtil.getLinePaint(Color.BLACK));
 ```
