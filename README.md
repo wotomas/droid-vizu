@@ -1,4 +1,4 @@
-# RippleSoundPlayerProject
+# Droid-vizu
 ![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat) ![Download](https://api.bintray.com/packages/wotomas/maven/ripple-sound-player/images/download.svg)
 
 # About
@@ -6,7 +6,7 @@
 [<img src="media/block_renderer.gif" width="200" />]() 
 [<img src="media/line_renderer.gif" width="200" />]()
 
-RippleSoundPlayerProject aims to provide cool with visualization effects for any Android audio project. The modular design allows users to easily swap Renderer class to get corresponding effects.
+Droid-vizu aims to provide cool with visualization effects for any Android audio project. The modular design allows users to easily swap Renderer class to get corresponding effects.
 
 # Demo
 [<img src="media/sample_app_image.gif" width="300" />]()
