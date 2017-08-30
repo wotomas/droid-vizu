@@ -1,5 +1,5 @@
 # Droid-vizu
-![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat) ![Download](https://api.bintray.com/packages/wotomas/maven/ripple-sound-player/images/download.svg)
+![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat) ![Download](https://api.bintray.com/packages/wotomas/maven/droid-vizu/images/download.svg)
 
 # About
 [<img src="media/color_block_renderer.gif" width="250" />]() 
@@ -9,7 +9,7 @@
 Droid-vizu aims to provide cool with visualization effects for any Android audio project. The modular design allows users to easily swap Renderer class to get corresponding effects.
 
 # Demo
-[<img src="media/sample_app_image.gif" width="300" />]()
+[<img src="media/sample_app_image.gif" width="300" />](https://youtu.be/EqYHNedTfnU)
 
 
 # Implement
