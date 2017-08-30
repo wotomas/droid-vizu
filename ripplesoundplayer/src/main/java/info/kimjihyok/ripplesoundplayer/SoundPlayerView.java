@@ -26,7 +26,7 @@ import info.kimjihyok.ripplesoundplayer.util.PaintUtil;
 public class SoundPlayerView extends LinearLayout {
   private TextView mediaLengthTextView;
   private ImageView mediaControlButton;
-  private RippleStatusBarView rippleStatusBarView;
+  private RippleVisualizerView rippleVisualizerView;
   private TextView actionButton;
   private Drawable playingDrawable;
   private Drawable pauseDrawable;
@@ -80,8 +80,8 @@ public class SoundPlayerView extends LinearLayout {
 
     mediaLengthTextView = (TextView) findViewById(R.id.total_media_length_textview);
     mediaControlButton = (ImageView) findViewById(R.id.media_control_button);
-    rippleStatusBarView = (RippleStatusBarView) findViewById(R.id.ripple_status_view);
-    rippleStatusBarView.setCurrentRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.BLUE)));
+    rippleVisualizerView = (RippleVisualizerView) findViewById(R.id.ripple_status_view);
+    rippleVisualizerView.setCurrentRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.BLUE)));
     actionButton = (TextView) findViewById(R.id.action_button);
 
     setSecondToFirstDecimalPoint(mediaLengthInMilliseconds);
@@ -117,12 +117,12 @@ public class SoundPlayerView extends LinearLayout {
         switch (currentMediaState) {
           case PLAYING:
             currentMediaState = State.PAUSED;
-            rippleStatusBarView.stop();
+            rippleVisualizerView.stop();
             if (listener != null) listener.onStop();
             break;
           case PAUSED:
             currentMediaState = State.PLAYING;
-            rippleStatusBarView.play();
+            rippleVisualizerView.play();
             if (listener != null) listener.onPlay();
             break;
         }
@@ -149,7 +149,7 @@ public class SoundPlayerView extends LinearLayout {
   }
 
   public void setRippleColor(@ColorInt int color) {
-    rippleStatusBarView.setRippleColor(color);
+    rippleVisualizerView.setRippleColor(color);
   }
 
   private void setSecondToFirstDecimalPoint(int mediaLengthInMilliseconds) {
@@ -182,7 +182,7 @@ public class SoundPlayerView extends LinearLayout {
   }
 
   public void setMediaPlayer(MediaPlayer player) {
-    rippleStatusBarView.setMediaPlayer(player);
+    rippleVisualizerView.setMediaPlayer(player);
     int durationMilliseconds = player.getDuration();
     if (durationMilliseconds == -1) {
       durationMilliseconds = 0;
@@ -198,10 +198,10 @@ public class SoundPlayerView extends LinearLayout {
   public void onStop() {
     currentMediaState = State.PAUSED;
     updateControlButton();
-    rippleStatusBarView.stop();
+    rippleVisualizerView.stop();
   }
 
   public void onDestroy() {
-    rippleStatusBarView.destroy();
+    rippleVisualizerView.destroy();
   }
 }

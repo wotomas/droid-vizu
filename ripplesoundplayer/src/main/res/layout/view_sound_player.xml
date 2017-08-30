@@ -23,7 +23,7 @@
         android:layout_width="18dp"
         android:layout_height="18dp"/>
 
-    <info.kimjihyok.ripplesoundplayer.RippleStatusBarView
+    <info.kimjihyok.ripplesoundplayer.RippleVisualizerView
         android:id="@+id/ripple_status_view"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"

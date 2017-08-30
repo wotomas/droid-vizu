@@ -11,9 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import info.kimjihyok.ripplesoundplayer.RippleStatusBarView;
+import info.kimjihyok.ripplesoundplayer.RippleVisualizerView;
 import info.kimjihyok.ripplesoundplayer.SoundPlayerView;
 import info.kimjihyok.ripplesoundplayer.renderer.BarRenderer;
+import info.kimjihyok.ripplesoundplayer.renderer.ColorfulBarRenderer;
 import info.kimjihyok.ripplesoundplayer.renderer.LineRenderer;
 import info.kimjihyok.ripplesoundplayer.util.PaintUtil;
 
@@ -24,19 +25,19 @@ public class MainActivity extends AppCompatActivity {
   private SoundPlayerView soundPlayerView;
   private TextView titleText;
 
-  // Demo Permose
-  private RippleStatusBarView renderDemoView;
+  // Demo Purpose
+  private RippleVisualizerView renderDemoView;
   private RendererMode currentRenderMode;
 
   private enum RendererMode {
-    LINE, BAR_GRAPH
+    LINE, BAR_GRAPH, COLORFUL_BAR_GRAPH
   }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    renderDemoView = (RippleStatusBarView) findViewById(R.id.line_renderer_demo);
+    renderDemoView = (RippleVisualizerView) findViewById(R.id.line_renderer_demo);
     titleText = (TextView) findViewById(R.id.title_text);
     ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION);
   }
@@ -85,14 +86,17 @@ public class MainActivity extends AppCompatActivity {
             case LINE:
               currentRenderMode = RendererMode.BAR_GRAPH;
               titleText.setText("Bar Renderer Mode");
-              setRenderer();
               break;
             case BAR_GRAPH:
+              currentRenderMode = RendererMode.COLORFUL_BAR_GRAPH;
+              titleText.setText("Colorful Bar Renderer Mode");
+              break;
+            case COLORFUL_BAR_GRAPH:
               currentRenderMode = RendererMode.LINE;
               titleText.setText("Line Renderer Mode");
-              setRenderer();
               break;
           }
+          setRenderer();
         }
       });
     } else {
@@ -107,6 +111,12 @@ public class MainActivity extends AppCompatActivity {
         break;
       case BAR_GRAPH:
         renderDemoView.setCurrentRenderer(new BarRenderer(16, PaintUtil.getBarGraphPaint(Color.BLUE)));
+        break;
+      case COLORFUL_BAR_GRAPH:
+        renderDemoView.setCurrentRenderer(new ColorfulBarRenderer(8, PaintUtil.getBarGraphPaint(Color.BLUE)
+            , Color.parseColor("#FF0033")
+            , Color.parseColor("#801AB3"))
+        );
         break;
     }
   }
