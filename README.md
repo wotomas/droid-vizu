@@ -82,7 +82,7 @@ Detailed information about parameters could be found in the source code!
 ```
 
 ### LineRenderer
-[<img src="media/block_renderer.gif" width="800" />]() 
+[<img src="media/line_renderer.gif" width="800" />]() 
 ```java
   new LineRenderer(PaintUtil.getLinePaint(Color.BLACK));
 ```
