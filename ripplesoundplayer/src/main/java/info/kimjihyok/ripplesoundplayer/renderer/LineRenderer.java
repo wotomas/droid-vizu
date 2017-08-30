@@ -1,0 +1,36 @@
+package info.kimjihyok.ripplesoundplayer.renderer;
+
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.support.annotation.ColorInt;
+
+/**
+ * Created by jkimab on 2017. 8. 30..
+ */
+
+public class LineRenderer extends Renderer {
+  private Paint paint;
+
+  public LineRenderer(Paint paint) {
+    this.paint = paint;
+  }
+
+  @Override
+  public void render(Canvas canvas, byte[] data, int w, int h) {
+    super.render(canvas, data, w, h);
+
+    for (int i = 0; i < data.length - 1; i++) {
+      points[i * 4] = w * i / (data.length - 1);
+      points[i * 4 + 1] = h / 2 + ((byte) (data[i] + 128)) * (h / 2) / 128;
+      points[i * 4 + 2] = w * (i + 1) / (data.length - 1);
+      points[i * 4 + 3] = h / 2 + ((byte) (data[i + 1] + 128)) * (h / 2) / 128;
+    }
+
+    canvas.drawLines(points, paint);
+  }
+
+  @Override
+  public void changeColor(@ColorInt int color) {
+    paint.setColor(color);
+  }
+}

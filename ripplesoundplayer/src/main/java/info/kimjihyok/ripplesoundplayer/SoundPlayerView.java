@@ -3,7 +3,6 @@ package info.kimjihyok.ripplesoundplayer;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.support.annotation.ColorInt;
@@ -16,6 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
+
+import info.kimjihyok.ripplesoundplayer.renderer.LineRenderer;
+import info.kimjihyok.ripplesoundplayer.util.PaintUtil;
 
 /**
  * Created by jihyokkim on 2017. 8. 30..
@@ -30,6 +32,7 @@ public class SoundPlayerView extends LinearLayout {
   private Drawable pauseDrawable;
 
   private OnMediaControlListener listener;
+
 
   enum State {
     PLAYING, PAUSED
@@ -78,6 +81,7 @@ public class SoundPlayerView extends LinearLayout {
     mediaLengthTextView = (TextView) findViewById(R.id.total_media_length_textview);
     mediaControlButton = (ImageView) findViewById(R.id.media_control_button);
     rippleStatusBarView = (RippleStatusBarView) findViewById(R.id.ripple_status_view);
+    rippleStatusBarView.setRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.BLUE)));
     actionButton = (TextView) findViewById(R.id.action_button);
 
     setSecondToFirstDecimalPoint(mediaLengthInMilliseconds);
@@ -92,6 +96,15 @@ public class SoundPlayerView extends LinearLayout {
       disableAction();
     }
   }
+
+  public void setContainerBackground(Drawable drawable){
+    if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+      setBackgroundDrawable(drawable);
+    } else {
+      setBackground(drawable);
+    }
+  }
+
 
   public void setPlayStopListener(OnMediaControlListener listener) {
     this.listener = listener;
@@ -189,6 +202,6 @@ public class SoundPlayerView extends LinearLayout {
   }
 
   public void onDestroy() {
-    rippleStatusBarView.destory();
+    rippleStatusBarView.destroy();
   }
 }

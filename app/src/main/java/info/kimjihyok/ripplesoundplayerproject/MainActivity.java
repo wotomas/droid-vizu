@@ -1,61 +1,110 @@
 package info.kimjihyok.ripplesoundplayerproject;
 
 import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
-import info.kimjihyok.ripplesoundplayer.RippleStatusBar;
 import info.kimjihyok.ripplesoundplayer.RippleStatusBarView;
 import info.kimjihyok.ripplesoundplayer.SoundPlayerView;
+import info.kimjihyok.ripplesoundplayer.renderer.LineRenderer;
+import info.kimjihyok.ripplesoundplayer.util.PaintUtil;
 
 public class MainActivity extends AppCompatActivity {
-  private SoundPlayerView soundPlayerView;
-
   private String[] permissions = {Manifest.permission.RECORD_AUDIO};
   private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
+
+  private SoundPlayerView soundPlayerView;
+  private TextView titleText;
+
+  // Demo Permose
+  private RippleStatusBarView renderDemoView;
+  private RendererMode currentRenderMode;
+
+  private enum RendererMode {
+    LINE, BAR_GRAPH
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-
-    MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.obama);
-    soundPlayerView = (SoundPlayerView) findViewById(R.id.sound_player_view);
-    soundPlayerView.setRippleColor(Color.BLUE);
-    soundPlayerView.setPlayStopListener(new SoundPlayerView.OnMediaControlListener() {
-      @Override
-      public void onPlay() {
-
-      }
-
-      @Override
-      public void onStop() {
-
-      }
-    });
-
-    soundPlayerView.setMediaPlayer(mediaPlayer);
-    showSoundPlayerActionButton(false);
+    renderDemoView = (RippleStatusBarView) findViewById(R.id.line_renderer_demo);
+    titleText = (TextView) findViewById(R.id.title_text);
     ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION);
   }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    switch (requestCode) {
+      case REQUEST_RECORD_AUDIO_PERMISSION: {
+        // If request is cancelled, the result arrays are empty.
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+          MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.obama);
+          soundPlayerView = (SoundPlayerView) findViewById(R.id.sound_player_view);
+          soundPlayerView.setMediaPlayer(mediaPlayer);
+          soundPlayerView.setPlayStopListener(new SoundPlayerView.OnMediaControlListener() {
+            @Override
+            public void onPlay() {
+              renderDemoView.play();
+            }
+
+            @Override
+            public void onStop() {
+              renderDemoView.stop();
+            }
+          });
+          showSoundPlayerActionButton(true);
+
+          currentRenderMode = RendererMode.LINE;
+          setRenderer();
+          renderDemoView.setMediaPlayer(mediaPlayer);
+
+//          soundPlayerView.setContainerBackground(ContextCompat.getDrawable(this, R.drawable.border_background));
+        }
+      }
+    }
+  }
+
 
   private void showSoundPlayerActionButton(boolean shouldShow) {
     if (shouldShow) {
       soundPlayerView.setActionButtonTextColor(Color.BLUE);
-      soundPlayerView.setActionButtonText("Request Now");
+      soundPlayerView.setActionButtonText("Change Mode");
       soundPlayerView.enableAction(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-          // do something when clicked
+          switch (currentRenderMode) {
+            case LINE:
+              currentRenderMode = RendererMode.BAR_GRAPH;
+              titleText.setText("Bar Renderer Mode");
+              break;
+            case BAR_GRAPH:
+              titleText.setText("Line Renderer Mode");
+              currentRenderMode = RendererMode.LINE;
+              break;
+          }
         }
       });
     } else {
       soundPlayerView.disableAction();
+    }
+  }
+
+  private void setRenderer() {
+    switch (currentRenderMode) {
+      case LINE:
+        renderDemoView.setRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.BLACK)));
+        break;
+      case BAR_GRAPH:
+        renderDemoView.setRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.BLUE)));
+        break;
     }
   }
 
@@ -64,12 +113,14 @@ public class MainActivity extends AppCompatActivity {
   protected void onStop() {
     super.onStop();
     soundPlayerView.onStop();
+    renderDemoView.stop();
   }
 
   @Override
   protected void onDestroy() {
     super.onDestroy();
     soundPlayerView.onDestroy();
+    renderDemoView.destroy();
   }
 }
 

@@ -1,17 +1,15 @@
 package info.kimjihyok.ripplesoundplayer;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.media.MediaPlayer;
 import android.media.audiofx.Visualizer;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
+
+import info.kimjihyok.ripplesoundplayer.renderer.Renderer;
 
 /**
  * Created by jihyokkim on 2017. 8. 30..
@@ -21,39 +19,23 @@ public class RippleStatusBarView extends View implements RippleStatusBar {
   private static final String TAG = "RippleStatusBarView";
   private byte[] data;
   private MediaPlayer mediaPlayer;
-  private float[] points;
   private Visualizer audioVisualizer;
-
-  // Paint parameters
-  @ColorInt
-  private int rippleColor;
-  private Paint ripplePaint;
+  private Renderer renderer;
 
   public RippleStatusBarView(Context context) {
     super(context);
-    init(context, null);
   }
 
   public RippleStatusBarView(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
-    init(context, attrs);
   }
 
   public RippleStatusBarView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    init(context, attrs);
   }
 
-  private void init(Context context, AttributeSet attrs) {
-    rippleColor = Color.BLUE;
-    setupPaint();
-  }
-
-  private void setupPaint() {
-    ripplePaint = new Paint();
-    ripplePaint.setStyle(Paint.Style.STROKE);
-    ripplePaint.setColor(rippleColor);
-    ripplePaint.setAntiAlias(true);
+  public void setRenderer(Renderer renderer) {
+    this.renderer = renderer;
   }
 
   @Override
@@ -61,21 +43,7 @@ public class RippleStatusBarView extends View implements RippleStatusBar {
     super.onDraw(canvas);
     if (data == null) return;
 
-    if (points == null || points.length < data.length * 4) {
-      points = new float[data.length * 4];
-    }
-
-    int w = getWidth();
-    int h = getHeight();
-
-    for (int i = 0; i < data.length - 1; i++) {
-      points[i * 4] = w * i / (data.length - 1);
-      points[i * 4 + 1] = h / 2 + ((byte) (data[i] + 128)) * (h / 2) / 128;
-      points[i * 4 + 2] = w * (i + 1) / (data.length - 1);
-      points[i * 4 + 3] = h / 2 + ((byte) (data[i + 1] + 128)) * (h / 2) / 128;
-    }
-
-    canvas.drawLines(points, ripplePaint);
+    renderer.render(canvas, data, getWidth(), getHeight());
   }
 
 
@@ -92,8 +60,7 @@ public class RippleStatusBarView extends View implements RippleStatusBar {
 
   @Override
   public void setRippleColor(@ColorInt int color) {
-    this.rippleColor = color;
-    setupPaint();
+    renderer.changeColor(color);
     invalidate();
   }
 
@@ -146,11 +113,7 @@ public class RippleStatusBarView extends View implements RippleStatusBar {
   }
 
   @Override
-  public void destory() {
+  public void destroy() {
     mediaPlayer.stop();
-  }
-
-  public MediaPlayer getMediaPlayer() {
-    return mediaPlayer;
   }
 }

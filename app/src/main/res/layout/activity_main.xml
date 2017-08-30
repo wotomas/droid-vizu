@@ -6,10 +6,26 @@
     android:layout_height="match_parent"
     tools:context="info.kimjihyok.ripplesoundplayerproject.MainActivity">
 
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:padding="16dp"
+        android:text="Line Renderer Mode"/>
+
+    <info.kimjihyok.ripplesoundplayer.RippleStatusBarView
+        android:layout_centerInParent="true"
+        android:layout_margin="16dp"
+        android:id="@+id/line_renderer_demo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
     <info.kimjihyok.ripplesoundplayer.SoundPlayerView
         android:id="@+id/sound_player_view"
         android:layout_width="match_parent"
-        android:layout_margin="8dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>
