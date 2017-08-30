@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import info.kimjihyok.ripplesoundplayer.RippleStatusBarView;
 import info.kimjihyok.ripplesoundplayer.SoundPlayerView;
+import info.kimjihyok.ripplesoundplayer.renderer.BarRenderer;
 import info.kimjihyok.ripplesoundplayer.renderer.LineRenderer;
 import info.kimjihyok.ripplesoundplayer.util.PaintUtil;
 
@@ -84,10 +85,12 @@ public class MainActivity extends AppCompatActivity {
             case LINE:
               currentRenderMode = RendererMode.BAR_GRAPH;
               titleText.setText("Bar Renderer Mode");
+              setRenderer();
               break;
             case BAR_GRAPH:
-              titleText.setText("Line Renderer Mode");
               currentRenderMode = RendererMode.LINE;
+              titleText.setText("Line Renderer Mode");
+              setRenderer();
               break;
           }
         }
@@ -100,10 +103,10 @@ public class MainActivity extends AppCompatActivity {
   private void setRenderer() {
     switch (currentRenderMode) {
       case LINE:
-        renderDemoView.setRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.BLACK)));
+        renderDemoView.setCurrentRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.BLACK)));
         break;
       case BAR_GRAPH:
-        renderDemoView.setRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.BLUE)));
+        renderDemoView.setCurrentRenderer(new BarRenderer(16, PaintUtil.getBarGraphPaint(Color.BLUE)));
         break;
     }
   }

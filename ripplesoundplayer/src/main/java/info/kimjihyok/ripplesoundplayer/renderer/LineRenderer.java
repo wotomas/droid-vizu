@@ -9,6 +9,7 @@ import android.support.annotation.ColorInt;
  */
 
 public class LineRenderer extends Renderer {
+  private static final String TAG = "LineRenderer";
   private Paint paint;
 
   public LineRenderer(Paint paint) {
@@ -32,5 +33,10 @@ public class LineRenderer extends Renderer {
   @Override
   public void changeColor(@ColorInt int color) {
     paint.setColor(color);
+  }
+
+  @Override
+  public boolean isFFTDataRequired() {
+    return false;
   }
 }

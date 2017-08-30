@@ -15,4 +15,12 @@ public class PaintUtil {
     paint.setAntiAlias(true);
     return paint;
   }
+
+  public static Paint getBarGraphPaint(@ColorInt int color) {
+    Paint paint = new Paint();
+    paint.setStrokeWidth(50f);
+    paint.setAntiAlias(true);
+    paint.setColor(color);
+    return paint;
+  }
 }

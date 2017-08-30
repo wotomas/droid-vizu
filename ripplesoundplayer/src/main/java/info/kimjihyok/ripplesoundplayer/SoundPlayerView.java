@@ -81,7 +81,7 @@ public class SoundPlayerView extends LinearLayout {
     mediaLengthTextView = (TextView) findViewById(R.id.total_media_length_textview);
     mediaControlButton = (ImageView) findViewById(R.id.media_control_button);
     rippleStatusBarView = (RippleStatusBarView) findViewById(R.id.ripple_status_view);
-    rippleStatusBarView.setRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.BLUE)));
+    rippleStatusBarView.setCurrentRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.BLUE)));
     actionButton = (TextView) findViewById(R.id.action_button);
 
     setSecondToFirstDecimalPoint(mediaLengthInMilliseconds);

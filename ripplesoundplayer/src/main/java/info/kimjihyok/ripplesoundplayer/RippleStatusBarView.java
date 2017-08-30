@@ -20,7 +20,7 @@ public class RippleStatusBarView extends View implements RippleStatusBar {
   private byte[] data;
   private MediaPlayer mediaPlayer;
   private Visualizer audioVisualizer;
-  private Renderer renderer;
+  private Renderer currentRenderer;
 
   public RippleStatusBarView(Context context) {
     super(context);
@@ -34,8 +34,8 @@ public class RippleStatusBarView extends View implements RippleStatusBar {
     super(context, attrs, defStyleAttr);
   }
 
-  public void setRenderer(Renderer renderer) {
-    this.renderer = renderer;
+  public void setCurrentRenderer(Renderer currentRenderer) {
+    this.currentRenderer = currentRenderer;
   }
 
   @Override
@@ -43,9 +43,8 @@ public class RippleStatusBarView extends View implements RippleStatusBar {
     super.onDraw(canvas);
     if (data == null) return;
 
-    renderer.render(canvas, data, getWidth(), getHeight());
+    currentRenderer.render(canvas, data, getWidth(), getHeight());
   }
-
 
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -60,7 +59,7 @@ public class RippleStatusBarView extends View implements RippleStatusBar {
 
   @Override
   public void setRippleColor(@ColorInt int color) {
-    renderer.changeColor(color);
+    currentRenderer.changeColor(color);
     invalidate();
   }
 
@@ -72,12 +71,17 @@ public class RippleStatusBarView extends View implements RippleStatusBar {
     audioVisualizer.setDataCaptureListener(new Visualizer.OnDataCaptureListener() {
       @Override
       public void onWaveFormDataCapture(Visualizer visualizer, byte[] bytes, int i) {
-        updateVisualizer(bytes);
+        if (!currentRenderer.isFFTDataRequired()) {
+          updateVisualizer(bytes);
+        }
+
       }
 
       @Override
       public void onFftDataCapture(Visualizer visualizer, byte[] bytes, int i) {
-        // do nothing
+        if (currentRenderer.isFFTDataRequired()) {
+          updateVisualizer(bytes);
+        }
       }
     }, Visualizer.getMaxCaptureRate() / 2, true, true);
 
@@ -101,7 +105,6 @@ public class RippleStatusBarView extends View implements RippleStatusBar {
 
   private void updateVisualizer(byte[] bytes) {
     this.data = bytes;
-
     invalidate();
   }
 
