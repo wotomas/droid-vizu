@@ -8,7 +8,7 @@
 
 Droid-vizu aims to provide cool with visualization effects for any Android audio project. The modular design allows users to easily swap Renderer class to get corresponding effects.
 
-# Demo
+# Demo (click for audio)
 [<img src="media/sample_app_image.gif" width="300" />](https://youtu.be/EqYHNedTfnU)
 
 
