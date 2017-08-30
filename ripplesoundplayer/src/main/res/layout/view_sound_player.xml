@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools"
+       android:orientation="horizontal"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center_vertical"
+       android:background="@drawable/border_background">
+
+
+    <TextView
+        android:id="@+id/total_media_length_textview"
+        android:padding="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="42 sec">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/media_control_button"
+        android:src="@drawable/ic_voice_pause"
+        android:padding="2dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"/>
+
+    <info.kimjihyok.ripplesoundplayer.RippleStatusBarView
+        android:id="@+id/ripple_status_view"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
+        android:id="@+id/action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Request Now"
+        tools:textColor="#008EFF"/>
+</LinearLayout>
