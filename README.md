@@ -5,8 +5,9 @@
 **Droid-vizu** aims to provide cool visualization effects for any Android audio project. Maintainable modular design allows users to easily swap Renderer class to get corresponding effects.
 
 # Demo (click for audio)
-[<img src="media/demo.gif" width="300" />](https://youtu.be/EqYHNedTfnU)
-[<img src="media/sample_app_image.gif" width="300" />](https://youtu.be/EqYHNedTfnU)
+[<img src="media/color_bar_renderer.gif" width="250" />](https://youtu.be/cfoTQodcp9U)
+[<img src="media/bar_renderer.gif" width="250" />](https://youtu.be/cfoTQodcp9U)
+[<img src="media/line_renderer.gif" width="250" />](https://youtu.be/cfoTQodcp9U)
 
 
 # Implement
@@ -65,7 +66,7 @@ Simply Provide RippleVisualizerViw with an prepared Android MediaPlayer and set 
 Detailed information about parameters could be found in the source code! 
 
 ### ColorBarRenderer
-[<img src="media/color_block_renderer.gif" width="800" />]() 
+[<img src="media/color_bar_renderer.gif" width="500" />]() 
 ```java
   renderDemoView.setCurrentRenderer(new ColorfulBarRenderer(8, PaintUtil.getBarGraphPaint(Color.BLUE)
             , Color.parseColor("#FF0033")
@@ -73,13 +74,13 @@ Detailed information about parameters could be found in the source code!
 ```
 
 ### BarRenderer
-[<img src="media/block_renderer.gif" width="800" />]() 
+[<img src="media/bar_renderer.gif" width="500" />]() 
 ```java
   new BarRenderer(16, PaintUtil.getBarGraphPaint(Color.BLUE));
 ```
 
 ### LineRenderer
-[<img src="media/line_renderer.gif" width="800" />]() 
+[<img src="media/line_renderer.gif" width="500" />]() 
 ```java
   new LineRenderer(PaintUtil.getLinePaint(Color.BLACK));
 ```
