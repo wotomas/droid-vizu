@@ -7,6 +7,7 @@ import android.media.audiofx.Visualizer;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import info.kimjihyok.ripplesoundplayer.renderer.Renderer;
@@ -121,5 +122,10 @@ public class RippleVisualizerView extends View {
 
   public void destroy() {
     mediaPlayer.stop();
+  }
+
+  public void setAmplitudePercentage(double ampValue) {
+    currentRenderer.setAmpValue(ampValue);
+    invalidate();
   }
 }

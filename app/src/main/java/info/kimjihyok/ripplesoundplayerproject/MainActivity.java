@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatSeekBar;
 import android.view.View;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import info.kimjihyok.ripplesoundplayer.RippleVisualizerView;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
   private SoundPlayerView soundPlayerView;
   private TextView titleText;
+  private AppCompatSeekBar seekBar;
 
   // Demo Purpose
   private RippleVisualizerView renderDemoView;
@@ -39,6 +42,32 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
     renderDemoView = (RippleVisualizerView) findViewById(R.id.line_renderer_demo);
     titleText = (TextView) findViewById(R.id.title_text);
+    seekBar = (AppCompatSeekBar) findViewById(R.id.ripple_size_seekbar);
+    soundPlayerView = (SoundPlayerView) findViewById(R.id.sound_player_view);
+
+    seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+      @Override
+      public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+        if (i == 0) return;
+
+        renderDemoView.setAmplitudePercentage(1 + ((double) i / 10.0));
+      }
+
+      @Override
+      public void onStartTrackingTouch(SeekBar seekBar) {
+
+      }
+
+      @Override
+      public void onStopTrackingTouch(SeekBar seekBar) {
+
+      }
+    });
+
+    if (getSupportActionBar() != null) {
+      getSupportActionBar().hide();
+    }
+
     ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION);
   }
 
@@ -49,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         // If request is cancelled, the result arrays are empty.
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
           MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.obama);
-          soundPlayerView = (SoundPlayerView) findViewById(R.id.sound_player_view);
           soundPlayerView.setMediaPlayer(mediaPlayer);
           soundPlayerView.setPlayStopListener(new SoundPlayerView.OnMediaControlListener() {
             @Override
@@ -67,8 +95,6 @@ public class MainActivity extends AppCompatActivity {
           currentRenderMode = RendererMode.LINE;
           setRenderer();
           renderDemoView.setMediaPlayer(mediaPlayer);
-
-//          soundPlayerView.setContainerBackground(ContextCompat.getDrawable(this, R.drawable.border_background));
         }
       }
     }
@@ -107,15 +133,15 @@ public class MainActivity extends AppCompatActivity {
   private void setRenderer() {
     switch (currentRenderMode) {
       case LINE:
-        renderDemoView.setCurrentRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.BLACK)));
+        renderDemoView.setCurrentRenderer(new LineRenderer(PaintUtil.getLinePaint(Color.YELLOW)));
         break;
       case BAR_GRAPH:
-        renderDemoView.setCurrentRenderer(new BarRenderer(16, PaintUtil.getBarGraphPaint(Color.BLUE)));
+        renderDemoView.setCurrentRenderer(new BarRenderer(16, PaintUtil.getBarGraphPaint(Color.WHITE)));
         break;
       case COLORFUL_BAR_GRAPH:
         renderDemoView.setCurrentRenderer(new ColorfulBarRenderer(8, PaintUtil.getBarGraphPaint(Color.BLUE)
             , Color.parseColor("#FF0033")
-            , Color.parseColor("#801AB3"))
+            , Color.parseColor("#ffebef"))
         );
         break;
     }

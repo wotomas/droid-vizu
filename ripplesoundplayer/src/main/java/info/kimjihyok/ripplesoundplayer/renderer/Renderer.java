@@ -10,14 +10,20 @@ import android.support.annotation.ColorInt;
 
 public abstract class Renderer {
   protected float[] points;
+  protected double ampValue = 1.0;
 
   @CallSuper
   public void render(Canvas canvas, byte[] data, int width, int height){
     if (points == null || points.length < data.length * 4) {
       points = new float[data.length * 4];
     }
+
   }
 
   public abstract void changeColor(@ColorInt int color);
   public abstract boolean isFFTDataRequired();
+
+  public void setAmpValue(double ampValue) {
+    this.ampValue = ampValue;
+  }
 }
