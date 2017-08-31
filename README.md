@@ -6,7 +6,7 @@
 [<img src="media/block_renderer.gif" width="250" />]() 
 [<img src="media/line_renderer.gif" width="250" />]()
 
-Droid-vizu aims to provide cool with visualization effects for any Android audio project. The modular design allows users to easily swap Renderer class to get corresponding effects.
+Droid-vizu aims to provide cool visualization effects for any Android audio project. Maintainable modular design allows users to easily swap Renderer class to get corresponding effects.
 
 # Demo (click for audio)
 [<img src="media/sample_app_image.gif" width="300" />](https://youtu.be/EqYHNedTfnU)
@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-  compile 'info.kimjihyok:ripple-sound-player:${ripple-sound-player-version}'
+  compile 'info.kimjihyok:droid-vizu:${droid-vizu}'
 }
 ```
 
