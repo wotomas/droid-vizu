@@ -57,7 +57,7 @@ public class ColorfulBarRenderer extends Renderer {
       byte ifk = data[divisions * i + 1];
 
       float magnitude = (rfk * rfk + ifk * ifk);
-      int dbValue = (int) (10 * Math.log10(magnitude));
+      int dbValue = (int) ((int) (10 * Math.log10(magnitude)) * ampValue);
 
       points[i * 4 + 1] = height;
       points[i * 4 + 3] = height - (dbValue * 2 - 10);

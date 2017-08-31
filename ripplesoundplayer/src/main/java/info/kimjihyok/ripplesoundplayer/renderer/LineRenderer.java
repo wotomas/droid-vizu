@@ -22,9 +22,9 @@ public class LineRenderer extends Renderer {
 
     for (int i = 0; i < data.length - 1; i++) {
       points[i * 4] = w * i / (data.length - 1);
-      points[i * 4 + 1] = h / 2 + ((byte) (data[i] + 128)) * (h / 2) / 128;
+      points[i * 4 + 1] = (float) (h / 2 + ((byte) (data[i] + 128) * ampValue) * (h / 2) / 128);
       points[i * 4 + 2] = w * (i + 1) / (data.length - 1);
-      points[i * 4 + 3] = h / 2 + ((byte) (data[i + 1] + 128)) * (h / 2) / 128;
+      points[i * 4 + 3] = (float) (h / 2 + ((byte) (data[i + 1] + 128) * ampValue) * (h / 2) / 128);
     }
 
     canvas.drawLines(points, paint);

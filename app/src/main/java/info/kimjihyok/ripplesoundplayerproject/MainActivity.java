@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
       case REQUEST_RECORD_AUDIO_PERMISSION: {
         // If request is cancelled, the result arrays are empty.
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-          MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.obama);
+          MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.imagination);
           soundPlayerView.setMediaPlayer(mediaPlayer);
           soundPlayerView.setPlayStopListener(new SoundPlayerView.OnMediaControlListener() {
             @Override
