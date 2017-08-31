@@ -2,9 +2,7 @@
 ![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat) ![Download](https://api.bintray.com/packages/wotomas/maven/droid-vizu/images/download.svg)
 
 # About
-[<img src="media/color_block_renderer.gif" width="250" />]() 
-[<img src="media/block_renderer.gif" width="250" />]() 
-[<img src="media/line_renderer.gif" width="250" />]()
+[<img src="media/demo_hd.gif" width="550" />]()
 
 Droid-vizu aims to provide cool visualization effects for any Android audio project. Maintainable modular design allows users to easily swap Renderer class to get corresponding effects.
 
