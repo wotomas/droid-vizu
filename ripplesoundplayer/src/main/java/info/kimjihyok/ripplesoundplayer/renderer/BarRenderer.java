@@ -15,8 +15,8 @@ public class BarRenderer extends Renderer {
 
   /**
    * Renders data as a series of lines, in histogram form
-   * @param divisions - must be a power of 2. Controls how many lines to draw
-   * @param paint - Paint to draw lines with
+   * divisions - must be a power of 2. Controls how many lines to draw
+   * paint - Paint to draw lines with
    */
   public BarRenderer(int divisions, Paint paint) {
     this.divisions = divisions;

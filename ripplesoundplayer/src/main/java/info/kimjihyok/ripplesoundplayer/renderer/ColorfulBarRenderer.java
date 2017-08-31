@@ -25,10 +25,12 @@ public class ColorfulBarRenderer extends Renderer {
 
   /**
    * Renders data as a series of lines, in histogram form
-   * @param divisions - must be a power of 2. Controls how many lines to draw
-   * @param paint - Paint to draw lines with
+   * divisions - must be a power of 2. Controls how many lines to draw
+   * paint - Paint to draw lines with
+   * startColor - color to start interpolation with
+   * endCOlor - color to end interpolate with
    */
-  public ColorfulBarRenderer(int divisions, Paint paint,int startColor, int endColor) {
+  public ColorfulBarRenderer(int divisions, Paint paint, @ColorInt int startColor, @ColorInt int endColor) {
     this.divisions = divisions;
     this.paint = paint;
     this.startColor = startColor;
