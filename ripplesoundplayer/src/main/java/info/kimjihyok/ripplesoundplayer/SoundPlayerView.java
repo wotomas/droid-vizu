@@ -185,6 +185,10 @@ public class SoundPlayerView extends LinearLayout {
     }
   }
 
+  protected interface OnMediaPlayFinishCallback {
+    void finished();
+  }
+
   public void setMediaPlayer(MediaPlayer player) {
     rippleVisualizerView.setMediaPlayer(player);
     int durationMilliseconds = player.getDuration();
@@ -193,6 +197,13 @@ public class SoundPlayerView extends LinearLayout {
     }
 
     setSecondToFirstDecimalPoint(durationMilliseconds);
+    rippleVisualizerView.setOnMediaPlayFinishCallbackk(new OnMediaPlayFinishCallback() {
+      @Override
+      public void finished() {
+        currentMediaState = State.PAUSED;
+        updateControlButton();
+      }
+    });
   }
 
   public void setActionButtonTextColor(@ColorInt int actionButtonTextColor) {

@@ -87,8 +87,16 @@ public class RippleVisualizerView extends View {
       @Override
       public void onCompletion(MediaPlayer mediaPlayer) {
         audioVisualizer.setEnabled(false);
+        mediaPlayFinishCallback.finished();
+
       }
     });
+  }
+
+  private SoundPlayerView.OnMediaPlayFinishCallback mediaPlayFinishCallback;
+
+  public void setOnMediaPlayFinishCallbackk(SoundPlayerView.OnMediaPlayFinishCallback mediaPlayFinishCallback) {
+    this.mediaPlayFinishCallback = mediaPlayFinishCallback;
   }
 
   public void play() {
