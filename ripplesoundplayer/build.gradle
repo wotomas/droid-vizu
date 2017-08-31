@@ -43,7 +43,7 @@ publish {
     userOrg = 'wotomas'
     groupId = 'info.kimjihyok'
     artifactId = 'droid-vizu'
-    publishVersion = '0.0.4'
+    publishVersion = '0.0.5'
     desc = 'Droid-vizu aims to provide customized visualization effects by easily swapping Renderer to get cool effects'
     website = 'https://github.com/wotomas/droid-vizu'
 }

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 
 import info.kimjihyok.ripplesoundplayer.renderer.LineRenderer;
+import info.kimjihyok.ripplesoundplayer.renderer.Renderer;
 import info.kimjihyok.ripplesoundplayer.util.PaintUtil;
 
 /**
@@ -32,7 +33,6 @@ public class SoundPlayerView extends LinearLayout {
   private Drawable pauseDrawable;
 
   private OnMediaControlListener listener;
-
 
   enum State {
     PLAYING, PAUSED
@@ -103,6 +103,10 @@ public class SoundPlayerView extends LinearLayout {
     } else {
       setBackground(drawable);
     }
+  }
+
+  public void setRenderer(Renderer renderer) {
+    rippleVisualizerView.setCurrentRenderer(renderer);
   }
 
 
