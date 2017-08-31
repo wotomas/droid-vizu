@@ -69,9 +69,9 @@ public class SoundPlayerView extends LinearLayout {
   private void init(Context context, AttributeSet attrs) {
     TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.SoundPlayerView, 0, 0);
     try {
-      rippleColor = a.getColor(R.styleable.SoundPlayerView_rippleColor, Color.GRAY);
-      enableActionButton = a.getBoolean(R.styleable.SoundPlayerView_enableActionButton, false);
-      mediaLengthInMilliseconds = a.getInt(R.styleable.SoundPlayerView_mediaFileLength, 0);
+      rippleColor = a.getColor(R.styleable.SoundPlayerView_SoundPlayerView_rippleColor, Color.GRAY);
+      enableActionButton = a.getBoolean(R.styleable.SoundPlayerView_SoundPlayerView_enableActionButton, false);
+      mediaLengthInMilliseconds = a.getInt(R.styleable.SoundPlayerView_SoundPlayerView_mediaFileLength, 0);
     } finally {
       a.recycle();
     }
