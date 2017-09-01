@@ -76,13 +76,13 @@ Detailed information about parameters could be found in the source code!
 ### BarRenderer
 [<img src="media/bar_renderer.gif" width="500" />]() 
 ```java
-  new BarRenderer(16, PaintUtil.getBarGraphPaint(Color.BLUE));
+  new BarRenderer(16, PaintUtil.getBarGraphPaint(Color.WHITE));
 ```
 
 ### LineRenderer
 [<img src="media/line_renderer.gif" width="500" />]() 
 ```java
-  new LineRenderer(PaintUtil.getLinePaint(Color.BLACK));
+  new LineRenderer(PaintUtil.getLinePaint(Color.YELLOW));
 ```
 
 
