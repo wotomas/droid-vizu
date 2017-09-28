@@ -4,10 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.media.MediaPlayer;
 import android.media.audiofx.Visualizer;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import info.kimjihyok.ripplesoundplayer.renderer.Renderer;
@@ -27,11 +24,11 @@ public class RippleVisualizerView extends View {
     super(context);
   }
 
-  public RippleVisualizerView(Context context, @Nullable AttributeSet attrs) {
+  public RippleVisualizerView(Context context, AttributeSet attrs) {
     super(context, attrs);
   }
 
-  public RippleVisualizerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+  public RippleVisualizerView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
   }
 
@@ -58,7 +55,7 @@ public class RippleVisualizerView extends View {
     setMeasuredDimension(w, h);
   }
 
-  public void setRippleColor(@ColorInt int color) {
+  public void setRippleColor(int color) {
     currentRenderer.changeColor(color);
     invalidate();
   }

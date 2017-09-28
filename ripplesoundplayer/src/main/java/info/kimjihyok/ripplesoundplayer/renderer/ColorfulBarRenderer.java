@@ -3,7 +3,6 @@ package info.kimjihyok.ripplesoundplayer.renderer;
 import android.animation.ArgbEvaluator;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.support.annotation.ColorInt;
 
 /**
  * Created by jkimab on 2017. 8. 31..
@@ -15,10 +14,8 @@ public class ColorfulBarRenderer extends Renderer {
   private Paint paint;
   private float colorInterpolatePercentage;
 
-  @ColorInt
   private int startColor;
 
-  @ColorInt
   private int endColor;
   private ArgbEvaluator rgbEvaluator;
 
@@ -30,7 +27,7 @@ public class ColorfulBarRenderer extends Renderer {
    * startColor - color to start interpolation with
    * endCOlor - color to end interpolate with
    */
-  public ColorfulBarRenderer(int divisions, Paint paint, @ColorInt int startColor, @ColorInt int endColor) {
+  public ColorfulBarRenderer(int divisions, Paint paint, int startColor, int endColor) {
     this.divisions = divisions;
     this.paint = paint;
     this.startColor = startColor;
@@ -73,7 +70,7 @@ public class ColorfulBarRenderer extends Renderer {
   }
 
   @Override
-  public void changeColor(@ColorInt int color) {
+  public void changeColor(int color) {
     paint.setColor(color);
   }
 

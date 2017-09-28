@@ -5,9 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -45,7 +42,6 @@ public class SoundPlayerView extends LinearLayout {
 
   private State currentMediaState = State.PAUSED;
 
-  @ColorInt
   private int rippleColor;
   private boolean enableActionButton;
   private int mediaLengthInMilliseconds;
@@ -56,12 +52,12 @@ public class SoundPlayerView extends LinearLayout {
     init(context, null);
   }
 
-  public SoundPlayerView(Context context, @Nullable AttributeSet attrs) {
+  public SoundPlayerView(Context context, AttributeSet attrs) {
     super(context, attrs);
     init(context, attrs);
   }
 
-  public SoundPlayerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+  public SoundPlayerView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     init(context, attrs);
   }
@@ -85,7 +81,8 @@ public class SoundPlayerView extends LinearLayout {
     actionButton = (TextView) findViewById(R.id.action_button);
 
     setSecondToFirstDecimalPoint(mediaLengthInMilliseconds);
-    setMediaControlDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_voice_play), ContextCompat.getDrawable(getContext(), R.drawable.ic_voice_pause));
+
+    setMediaControlDrawable(getResources().getDrawable(R.drawable.ic_voice_play), getResources().getDrawable(R.drawable.ic_voice_pause));
     setMediaButtonClickListener();
 
     setRippleColor(rippleColor);
@@ -141,7 +138,7 @@ public class SoundPlayerView extends LinearLayout {
     actionButton.setOnClickListener(null);
   }
 
-  public void enableAction(@Nullable OnClickListener listener) {
+  public void enableAction(OnClickListener listener) {
     actionButton.setVisibility(VISIBLE);
     if (listener != null) {
       actionButton.setOnClickListener(listener);
@@ -152,7 +149,7 @@ public class SoundPlayerView extends LinearLayout {
     actionButton.setText(text);
   }
 
-  public void setRippleColor(@ColorInt int color) {
+  public void setRippleColor(int color) {
     rippleVisualizerView.setRippleColor(color);
   }
 
@@ -206,7 +203,7 @@ public class SoundPlayerView extends LinearLayout {
     });
   }
 
-  public void setActionButtonTextColor(@ColorInt int actionButtonTextColor) {
+  public void setActionButtonTextColor(int actionButtonTextColor) {
     actionButton.setTextColor(actionButtonTextColor);
   }
 

@@ -1,14 +1,13 @@
 package info.kimjihyok.ripplesoundplayer.util;
 
 import android.graphics.Paint;
-import android.support.annotation.ColorInt;
 
 /**
  * Created by jkimab on 2017. 8. 30..
  */
 
 public class PaintUtil {
-  public static Paint getLinePaint(@ColorInt int color) {
+  public static Paint getLinePaint(int color) {
     Paint paint = new Paint();
     paint.setColor(color);
     paint.setStyle(Paint.Style.STROKE);
@@ -16,7 +15,7 @@ public class PaintUtil {
     return paint;
   }
 
-  public static Paint getBarGraphPaint(@ColorInt int color) {
+  public static Paint getBarGraphPaint(int color) {
     Paint paint = new Paint();
     paint.setStrokeWidth(50f);
     paint.setAntiAlias(true);

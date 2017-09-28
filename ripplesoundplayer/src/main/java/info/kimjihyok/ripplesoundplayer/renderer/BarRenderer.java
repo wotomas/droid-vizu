@@ -2,7 +2,6 @@ package info.kimjihyok.ripplesoundplayer.renderer;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.support.annotation.ColorInt;
 
 /**
  * ported version of package com.pheelicks.visualizer.renderer;
@@ -45,7 +44,7 @@ public class BarRenderer extends Renderer {
   }
 
   @Override
-  public void changeColor(@ColorInt int color) {
+  public void changeColor(int color) {
     paint.setColor(color);
   }
 

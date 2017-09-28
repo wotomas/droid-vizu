@@ -36,14 +36,13 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:26.+'
 }
 
 publish {
     userOrg = 'wotomas'
     groupId = 'info.kimjihyok'
     artifactId = 'droid-vizu'
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.1'
     desc = 'Droid-vizu aims to provide customized visualization effects by easily swapping Renderer to get cool effects'
     website = 'https://github.com/wotomas/droid-vizu'
 }

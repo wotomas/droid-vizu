@@ -2,7 +2,6 @@ package info.kimjihyok.ripplesoundplayer.renderer;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.support.annotation.ColorInt;
 
 /**
  * Created by jkimab on 2017. 8. 30..
@@ -31,7 +30,7 @@ public class LineRenderer extends Renderer {
   }
 
   @Override
-  public void changeColor(@ColorInt int color) {
+  public void changeColor(int color) {
     paint.setColor(color);
   }
 

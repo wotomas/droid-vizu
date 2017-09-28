@@ -22,5 +22,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:26.+'
-    compile project(path: ':ripplesoundplayer')
+//    compile project(path: ':ripplesoundplayer')
+    compile 'info.kimjihyok:droid-vizu:1.0.0'
+
+
 }
